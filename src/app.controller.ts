@@ -15,6 +15,8 @@ export class AppController {
   // app.get('/hello')랑 같은 의미
   @Get('/hello')
   sayHello(): string {
-    return 'Hello everyone';
+    // 이렇게 직접 써줄 수도 있고 아래와 같이appService로 불러와줄수도 있음
+    // return 'Hello everyone';
+    return this.appService.getHi();
   }
 }
