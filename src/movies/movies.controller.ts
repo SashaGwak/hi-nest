@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post, Patch, Body} from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Patch, Body, Query} from '@nestjs/common';
 
 // movies부분도 url => /movies로 가야함
 @Controller('movies')
@@ -7,6 +7,11 @@ export class MoviesController {
     @Get() 
     getAll(){
         return "This will return all movies";
+    }
+
+    @Get('search')
+    search(@Query('year') seachingYear:string ) {
+        return `We are searching for a movie made after: ${seachingYear}`;
     }
 
     @Get('/:id')
