@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post, Patch } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Patch, Body} from '@nestjs/common';
 
 // movies부분도 url => /movies로 가야함
 @Controller('movies')
@@ -16,8 +16,9 @@ export class MoviesController {
     }
 
     @Post()
-    create(){
-        return 'This will create a movie';
+    create(@Body() movieData){
+        console.log(movieData); // { name: 'Tenet', director: 'Nolan' }
+        return movieData;
     }
 
     @Delete('/:id') 
@@ -26,7 +27,16 @@ export class MoviesController {
     }
 
     @Patch('/:id') 
-    patch(@Param('id') movieId:string) {
-        return `This will patch a movie with the id: ${movieId}`;
+    patch(@Param('id') movieId:string, @Body() updateData) {
+        return {
+            updateData: movieId, 
+            ...updateData, 
+            // http://localhost:3000/movies/12 일때 
+            // {
+            //     "updateData": "12",
+            //     "name": "Tenet",
+            //     "director": "Nolan"
+            // }
+        };
     }
 }
