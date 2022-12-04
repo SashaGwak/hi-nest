@@ -1,6 +1,8 @@
 import { Controller, Delete, Get, Param, Post, Patch, Body, Query} from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
+import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 
 // movies부분도 url => /movies로 가야함
 @Controller('movies')
@@ -19,32 +21,26 @@ export class MoviesController {
 
     @Get(':id')
     // param에서 id 가져와서 movieId 변수명인 string으로 저장
-    getOne(@Param('id') movieId: string): Movie {
+    getOne(@Param('id') movieId: number): Movie {
+        console.log(typeof movieId);
         return this.moviesService.getOne(movieId);
     }
 
     @Post()
-    create(@Body() movieData){
+    // CreateMovieDto는 NestJS가 들어오는 쿼리에 대해 유효성을 검사할 수 있게 해줌 
+    create(@Body() movieData: CreateMovieDto){
         // console.log(movieData); // { name: 'Tenet', director: 'Nolan' }
         return this.moviesService.create(movieData);
     }
 
     @Delete(':id') 
-    remove(@Param('id') movieId:string) {
+    remove(@Param('id') movieId:number) {
         return this.moviesService.deleteOne(movieId);
     }
 
     @Patch(':id') 
-    patch(@Param('id') movieId:string, @Body() updateData) {
-        return {
-            updateData: movieId, 
-            ...updateData, 
-            // http://localhost:3000/movies/12 일때 
-            // {
-            //     "updateData": "12",
-            //     "name": "Tenet",
-            //     "director": "Nolan"
-            // }
-        };
+    patch(@Param('id') movieId:number, @Body() updateData: UpdateMovieDto) {
+
+        return this.moviesService.update(movieId, updateData);
     }
 }
