@@ -1,8 +1,8 @@
 import { Controller, Delete, Get, Param, Post, Patch, Body, Query} from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
-import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
+import { CreateMovieDto } from './dto/create-movie.dto';
 
 // movies부분도 url => /movies로 가야함
 @Controller('movies')

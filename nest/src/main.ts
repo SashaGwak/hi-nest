@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { join } from 'path';
 import { AppModule } from './app.module';
 
 // bootstrap 이름은 아무거나 지정해줘도 됨 
@@ -18,4 +19,7 @@ async function bootstrap() {
   ); 
   await app.listen(3000);
 }
+
+app.useStaticAssets(join(__dirname, '..', 'src', 'public'));
+
 bootstrap();
