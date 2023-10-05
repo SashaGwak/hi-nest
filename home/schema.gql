@@ -1,0 +1,22 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Market {
+  market_id: Float!
+  code: String!
+  market: String!
+  kor_market: String!
+  orderby: String!
+  label: String!
+  sort: Float!
+  is_run: Float!
+  shipping_edit: Float!
+  shipping_check: Float!
+  open_market: Float!
+}
+
+type Query {
+  hello: String!
+  allMarkets: [Market!]!
+}
