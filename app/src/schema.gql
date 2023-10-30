@@ -1,0 +1,10 @@
+type Query {
+    getBaelee(
+        c_code: String!, 
+        start_date: String!, 
+        end_date: String!, 
+        company_id: String!, 
+        search: String, 
+        date_id: Int!
+    ): [shippingList]!
+}

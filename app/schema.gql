@@ -1,0 +1,17 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type shippingList {
+  c_code: String!
+  build_date: String!
+  shipped_date: String
+  order_number: String!
+  status: Float
+  tracking_number: String
+  weight: Float!
+}
+
+type Query {
+  getBaelee(c_code: String!, start_date: String!, end_date: String!, company_id: String!, date_id: Float!, search: String): [shippingList!]!
+}
